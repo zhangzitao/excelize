@@ -502,7 +502,6 @@ func (f *File) DeleteSheet(sheet string) {
 	sheetName := trimSheetName(sheet)
 	wb := f.workbookReader()
 	wbRels := f.relsReader(f.getWorkbookRelsPath())
-	activeSheetName := f.GetSheetName(f.GetActiveSheetIndex())
 	deleteLocalSheetID := f.GetSheetIndex(sheet)
 	deleteAndAdjustDefinedNames(wb, deleteLocalSheetID)
 
@@ -533,7 +532,7 @@ func (f *File) DeleteSheet(sheet string) {
 		delete(f.xmlAttr, sheetXML)
 		f.SheetCount--
 	}
-	f.SetActiveSheet(f.GetSheetIndex(activeSheetName))
+	// f.SetActiveSheet(f.GetSheetIndex(activeSheetName))
 }
 
 // deleteAndAdjustDefinedNames delete and adjust defined name in the workbook
